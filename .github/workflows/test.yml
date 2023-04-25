@@ -13,7 +13,7 @@ jobs:
       solr:
         image: solr:9
         ports:
-          - 8983:8983
+          - 8983:9001
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -22,9 +22,9 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         pip install requests
         python -c "import requests; print(requests.__version__)"
-        python -c "import requests ; url = 'http://localhost:8983' ; print(url, requests.get(url).status_code)"
-        python -c "import requests ; url = 'http://localhost:8983/solr' ; print(url, requests.get(url).status_code)" || true
-        python -c "import requests ; url = 'http://localhost:8983/solr/example' ; print(url, requests.get(url).status_code)" || true
-        python -c "import requests ; url = 'http://localhost:8983/solr/collection1' ; print(url, requests.get(url).status_code)" || true
-        python -c "import requests ; url = 'http://localhost:8983/solr/collection1/admin' ; print(url, requests.get(url).status_code)" || true
-        python -c "import requests ; url = 'http://localhost:8983/solr/collection1/admin/ping' ; print(url, requests.get(url).status_code)" || true
+        python -c "import requests ; url = 'http://localhost:9001' ; print(url, requests.get(url).status_code)"
+        python -c "import requests ; url = 'http://localhost:9001/solr' ; print(url, requests.get(url).status_code)"
+        python -c "import requests ; url = 'http://localhost:9001/solr/example' ; print(url, requests.get(url).status_code)" || true
+        python -c "import requests ; url = 'http://localhost:9001/solr/collection1' ; print(url, requests.get(url).status_code)" || true
+        python -c "import requests ; url = 'http://localhost:9001/solr/collection1/admin' ; print(url, requests.get(url).status_code)" || true
+        python -c "import requests ; url = 'http://localhost:9001/solr/collection1/admin/ping' ; print(url, requests.get(url).status_code)" || true

@@ -31,6 +31,7 @@ jobs:
         python -c "import requests ; url = 'http://localhost:9001/solr/collection1/admin/ping' ; print(url, requests.get(url).status_code)" || true
     - shell: python  # From pysolr README...
       run: |
+        import pysolr
         solr = pysolr.Solr('http://localhost:9001/solr/', always_commit=True, timeout=10)
         solr.ping()
         solr.add([
